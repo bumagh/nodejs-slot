@@ -1,17 +1,9 @@
-
 require('dotenv').config();
 var cors = require('cors');
-let Telegram      = require('node-telegram-bot-api');
-let TelegramToken = '1994240179:AAGmDQfq2EUrAtdVkdsABmp7tvgBNkqbrWs';
-let TelegramBot   = new Telegram(TelegramToken, {polling: true});
 let fs 			  = require('fs');
-//let https     	  = require('https')
-//let privateKey    = fs.readFileSync('./ssl/b86club.key', 'utf8');
-//let certificate   = fs.readFileSync('./ssl/b86club.pem', 'utf8');
-//let credentials   = {key: privateKey, cert: certificate};
+
 let express       = require('express');
 let app           = express();
-//let server 	  	  = https.createServer(credentials, app);
 app.use(cors({
     origin: '*',
     optionsSuccessStatus: 200
@@ -27,7 +19,7 @@ require('mongoose-long')(mongoose); // INT 64bit
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex',   true);
 mongoose.connect(configDB.url, configDB.options); // kết nối tới database
-// cấu hình tài khoản admin mặc định và các dữ liệu mặc định
+//配置默认管理员帐户和默认数据
 require('./config/admin');
 // đọc dữ liệu from
 app.use(bodyParser.json());
@@ -40,7 +32,6 @@ app.use(express.static('public'));
 // server socket
 let redT = expressWs.getWss();
 process.redT = redT;
-redT.telegram = TelegramBot;
 global['redT'] = redT;
 global.SKnapthe = 2;
 global['userOnline'] = 0;
@@ -48,10 +39,9 @@ require('./app/Helpers/socketUser')(redT); // Add function socket
 require('./routerHttp')(app, redT);   // load các routes HTTP
 require('./routerCMS')(app, redT);	//load routes CMS
 require('./routerSocket')(app, redT); // load các routes WebSocket
-require('./app/Cron/taixiu')(redT);   // Chạy game Tài Xỉu
-require('./app/Cron/baucua')(redT);   // Chạy game Bầu Cua
+// require('./app/Cron/taixiu')(redT);   // Chạy game Tài Xỉu
+// require('./app/Cron/baucua')(redT);   // Chạy game Bầu Cua
 require('./config/cron')();
-require('./app/Telegram/Telegram')(redT); // Telegram Bot
 app.listen(port, function() {
     console.log("Server listen on port ", port);
 });
