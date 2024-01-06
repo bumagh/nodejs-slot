@@ -1,6 +1,6 @@
 
 //module.exports = {
-//	'url': 'mongodb://172.25.55.83:27017',
+//	'url': 'mongodb://127.0.0.1:27017',
 //	'options': {
 //		'user':   'root',
 //		'pass':   '',
@@ -13,7 +13,7 @@
 
 
 module.exports = {
-	'url': 'mongodb://172.25.55.83:27017',
+	'url': 'mongodb://127.0.0.1:27017',
 	'options': {
 	//	'user':   'root',
 	//	'pass':   '',
