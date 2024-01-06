@@ -142,7 +142,7 @@ RongHo.prototype.play = function(){
 						if (bcXX.bot) {
 							// lấy danh sách tài khoản bot
 							UserInfo.find({type:true}, 'id name', function(err, blist){
-								if (blist.length) {
+								if (blist!=null && blist.length) {
 									Promise.all(blist.map(function(buser){
 										buser = buser._doc;
 										delete buser._id;
