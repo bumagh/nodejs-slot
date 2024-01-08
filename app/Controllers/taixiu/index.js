@@ -165,8 +165,8 @@ var cuoc = function(client, data){
 									}
 								}
 							}else{
-								// cuoc
-								var io = client.redT;
+								try {
+									var io = client.redT;
 								if (select) {
 									io.taixiu.taixiu.red_tai             += bet;
 									io.taixiu.taixiu.red_player_tai      += 1;
@@ -191,6 +191,11 @@ var cuoc = function(client, data){
 										obj.red({taixiu:taixiuVery, user:{red:user.red}});
 									});
 								}
+								} catch (error) {
+									
+								}
+								// cuoc
+								
 							}
 							bet    = null;
 							select = null;
