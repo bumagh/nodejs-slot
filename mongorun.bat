@@ -1,1 +1,1 @@
-mongod --dbpath=C:/Users/Administrator/Documents/mongodata --bind_ip 172.25.55.83
+mongod --dbpath=D:/1mongopath --bind_ip 127.0.0.1

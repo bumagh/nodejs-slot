@@ -42,6 +42,6 @@ require('./routerSocket')(app, redT); // load các routes WebSocket
 // require('./app/Cron/taixiu')(redT);   // Chạy game Tài Xỉu
 // require('./app/Cron/baucua')(redT);   // Chạy game Bầu Cua
 require('./config/cron')();
-app.listen(port, function() {
+app.listen(port,'127.0.0.1', function() {
     console.log("Server listen on port ", port);
 });
